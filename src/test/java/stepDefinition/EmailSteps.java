@@ -3,10 +3,13 @@ package stepDefinition;
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.SimpleEmail;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import pageObjects.PageObjects;
 
 public class EmailSteps {
+	private static final Logger LOG = LogManager.getLogger(EmailSteps.class);
 
 	public static void sendEmail() {
 		try {
@@ -21,10 +24,9 @@ public class EmailSteps {
 			email.setMsg("The domain you are searching for is now available");
 			email.addTo(PageObjects.FRIEND_EMAIL);
 			email.send();
-			System.out.println("Email Sent!");
-		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.info("The email has been successfully sent!");
+		} catch (Exception exc) {
+			exc.printStackTrace();
 		}
-
 	}
 }

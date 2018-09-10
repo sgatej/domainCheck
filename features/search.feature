@@ -1,11 +1,14 @@
-Feature: Test more domains
+Feature: Test available domain
 
-Scenario: Test that Toni appears in the available domains
-Given I start a new browser session for "url"
-And I fill in the field 
-|Input|toni|
-And I click on "Cauta"
-And I see the  response message "toni.ro nu este momentan disponibil!"
-#And I select values for the following dropdown field
-#|Value|net|
-#And I click on "Cauta"
+  Background: Given I start a new browser session for "url"
+
+  Scenario Outline: Test multiple users as available domains
+    Given I fill in the field using <domainName>
+    And I click on "Cauta"
+    And I see the  response message "toni.ro nu este momentan disponibil!"
+    Then I close the browser
+
+    Examples: 
+      | domainName |
+      | toni       |
+      | sashadj    |
