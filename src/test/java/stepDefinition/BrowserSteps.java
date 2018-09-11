@@ -51,7 +51,6 @@ public class BrowserSteps {
 		table.raw().forEach(inputRow -> {
 			WebElement input = webHelper.findInputField(inputRow.get(0));
 			input.clear();
-			// angular doesn't clear the ng-model without this workaround:
 			input.sendKeys(" ");
 			input.sendKeys(Keys.BACK_SPACE);
 			//
