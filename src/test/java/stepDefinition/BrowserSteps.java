@@ -16,8 +16,8 @@ import org.openqa.selenium.support.ui.Select;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import pageObjects.PageObjects;
-import pageObjects.WebHelper;
+import pageobjects.PageObjects;
+import pageobjects.WebHelper;
 
 public class BrowserSteps {
 

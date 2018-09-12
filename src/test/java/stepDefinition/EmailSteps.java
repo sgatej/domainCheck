@@ -6,7 +6,7 @@ import org.apache.commons.mail.SimpleEmail;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import pageObjects.PageObjects;
+import pageobjects.PageObjects;
 
 public class EmailSteps {
 	private static final Logger LOG = LogManager.getLogger(EmailSteps.class);
