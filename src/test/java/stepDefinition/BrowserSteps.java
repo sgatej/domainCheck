@@ -31,7 +31,7 @@ public class BrowserSteps {
 		System.setProperty("webdriver.gecko.driver", "src/geckodriver");
 
 		FirefoxOptions firefoxOptions = new FirefoxOptions();
-		firefoxOptions.setCapability("marionette", false);
+		firefoxOptions.setCapability("marionette", true);
 		driver = new FirefoxDriver(firefoxOptions);
 		LOG.info("A new browser session is firing up");
 		driver.get(PageObjects.url);
