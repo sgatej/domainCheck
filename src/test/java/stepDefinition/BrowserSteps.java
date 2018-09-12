@@ -9,8 +9,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import cucumber.api.DataTable;
@@ -28,11 +27,11 @@ public class BrowserSteps {
 
 	public BrowserSteps() {
 
-		System.setProperty("webdriver.gecko.driver", "D:\\Workspaces\\Domains\\Domain\\geckodriver.exe");
+		System.setProperty("webdriver.chrome.driver", "src/chromedriver");
 
-		FirefoxOptions firefoxOptions = new FirefoxOptions();
-		firefoxOptions.setCapability("marionette", false);
-		driver = new FirefoxDriver(firefoxOptions);
+//		ChromeOptions firefoxOptions = new ChromeOptions();
+//		firefoxOptions.setCapability("marionette", false);
+		driver = new ChromeDriver();
 		LOG.info("A new browser session is firing up");
 		driver.get(PageObjects.url);
 		LOG.info("The webpage is opened");
