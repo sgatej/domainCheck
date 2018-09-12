@@ -1,7 +1,10 @@
 package stepdefinition;
 
+import java.util.logging.Level;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.apache.log4j.lf5.LogLevel;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -29,6 +32,7 @@ public class BrowserSteps {
 	public BrowserSteps() {
 
 		System.setProperty("webdriver.gecko.driver", "src/geckodriver");
+		System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");
 
 		FirefoxOptions firefoxOptions = new FirefoxOptions();
 		firefoxOptions.setCapability("marionette", true);
