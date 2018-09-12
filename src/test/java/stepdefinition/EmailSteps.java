@@ -1,4 +1,4 @@
-package stepDefinition;
+package stepdefinition;
 
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
