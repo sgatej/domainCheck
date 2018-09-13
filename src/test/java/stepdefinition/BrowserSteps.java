@@ -1,10 +1,7 @@
 package stepdefinition;
 
-import java.util.logging.Level;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.apache.log4j.lf5.LogLevel;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -21,6 +18,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import pageobjects.PageObjects;
 import pageobjects.WebHelper;
+import utils.ReadFile;
 
 public class BrowserSteps {
 
@@ -28,6 +26,7 @@ public class BrowserSteps {
 	private WebDriver driver;
 
 	WebHelper webHelper;
+	ReadFile readFile;
 
 	public BrowserSteps() {
 
@@ -35,12 +34,13 @@ public class BrowserSteps {
 		System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");
 
 		FirefoxOptions firefoxOptions = new FirefoxOptions();
-		firefoxOptions.setCapability("marionette", true);
+		firefoxOptions.setCapability("marionette", false);
 		driver = new FirefoxDriver(firefoxOptions);
 		LOG.info("A new browser session is firing up");
-		driver.get(PageObjects.url);
+		driver.get(PageObjects.newurl);
 		LOG.info("The webpage is opened");
 		webHelper = new WebHelper(driver);
+		readFile = new ReadFile();
 	}
 
 	@Given("^I start a new browser session for \"([^\"]*)\"$")
@@ -49,20 +49,29 @@ public class BrowserSteps {
 		driver.manage().window().maximize();
 	}
 
-	@Given("^I fill in the field$")
-	public void i_fill_in_the_field(DataTable table) throws Throwable {
+//	@Given("^I fill in the field$")
+//	public void i_fill_in_the_field(DataTable table) throws Throwable {
+//		webHelper.waitForThread();
+//		table.raw().forEach(inputRow -> {
+//			WebElement input = webHelper.findInputField(inputRow.get(0));
+//			input.clear();
+//			input.sendKeys(" ");
+//			input.sendKeys(Keys.BACK_SPACE);
+//			//
+//			input.sendKeys(inputRow.get(1));
+//			input.sendKeys(Keys.TAB);
+//			LOG.info("The fields are being filled in");
+//		});
+//	}
+	
+	@Given("^I search for a set of domains located in a list$")
+	public void searchUsingList() throws Throwable {
 		webHelper.waitForThread();
-		table.raw().forEach(inputRow -> {
-			WebElement input = webHelper.findInputField(inputRow.get(0));
-			input.clear();
-			input.sendKeys(" ");
-			input.sendKeys(Keys.BACK_SPACE);
-			//
-			input.sendKeys(inputRow.get(1));
-			input.sendKeys(Keys.TAB);
-			LOG.info("The fields are being filled in");
-		});
+		WebElement input = webHelper.findSearchField();
+		webHelper.findSearchField().click();
+		input.clear();
 	}
+		
 
 	@Given("^I click on \"([^\"]*)\"$")
 	public void i_click_on(String buttonName) throws Throwable {

@@ -29,6 +29,9 @@ public class WebHelper {
 		LOG.info("Found input field");
 		return driver.findElement(By.id(PageObjects.INPUT_FIELD));
 	}
+	public WebElement findSearchField(){
+		return driver.findElement(By.xpath(PageObjects.SEARCH_FIELD));
+	}
 
 	public WebElement findButtonOrHref(String buttonName) {
 		WebDriverWait wait = new WebDriverWait(driver, 3);
