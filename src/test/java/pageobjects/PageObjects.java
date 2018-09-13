@@ -10,4 +10,5 @@ public class PageObjects {
 	public final static String MY_PASSWORD = "QAZxsw1234";
 	public final static String FRIEND_EMAIL = "sasha.gatej@gmail.com";
 	public final static String SEARCH_FIELD = ".//*[@id='searchbox']/div/form/textarea";
+	public final static String FREE_DOMAIN = ".//div[contains(@class, 'dasLine dasLineFree')]";
 }

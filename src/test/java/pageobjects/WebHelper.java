@@ -36,12 +36,17 @@ public class WebHelper {
 	public WebElement findButtonOrHref(String buttonName) {
 		WebDriverWait wait = new WebDriverWait(driver, 3);
 		String buttonHrefXpathSelector = String.format(
-				"//button[contains(., '%s')] | //a[contains(., '%s')] | //a[contains(@title, '%s')]", buttonName,
+				"//button[contains(., '%s')] | //a[contains(., '%s')] | //a[contains(@text, '%s')] |//*[@id='searchbox']//*/input", buttonName,
 				buttonName, buttonName);
 		By xpath = By.xpath(buttonHrefXpathSelector);
 		wait.until(ExpectedConditions.elementToBeClickable(xpath));
 		LOG.info("Button found. Proceed on clicking it");
 		return driver.findElement(xpath);
+	}
+	
+	public void findAvailableDomain() {
+		 driver.findElement(By.xpath(PageObjects.FREE_DOMAIN));		
+		
 	}
 
 	public WebElement findDropdown(String label) {

@@ -34,10 +34,10 @@ public class BrowserSteps {
 		System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");
 
 		FirefoxOptions firefoxOptions = new FirefoxOptions();
-		firefoxOptions.setCapability("marionette", false);
+		firefoxOptions.setCapability("marionette", true);
 		driver = new FirefoxDriver(firefoxOptions);
 		LOG.info("A new browser session is firing up");
-		driver.get(PageObjects.newurl);
+		driver.get(PageObjects.url);
 		LOG.info("The webpage is opened");
 		webHelper = new WebHelper(driver);
 		readFile = new ReadFile();
@@ -49,27 +49,29 @@ public class BrowserSteps {
 		driver.manage().window().maximize();
 	}
 
-//	@Given("^I fill in the field$")
-//	public void i_fill_in_the_field(DataTable table) throws Throwable {
-//		webHelper.waitForThread();
-//		table.raw().forEach(inputRow -> {
-//			WebElement input = webHelper.findInputField(inputRow.get(0));
-//			input.clear();
-//			input.sendKeys(" ");
-//			input.sendKeys(Keys.BACK_SPACE);
-//			//
-//			input.sendKeys(inputRow.get(1));
-//			input.sendKeys(Keys.TAB);
-//			LOG.info("The fields are being filled in");
-//		});
-//	}
+	@Given("^I fill in the field$")
+	public void i_fill_in_the_field(DataTable table) throws Throwable {
+		webHelper.waitForThread();
+		table.raw().forEach(inputRow -> {
+			WebElement input = webHelper.findInputField(inputRow.get(0));
+			input.clear();
+			input.sendKeys(" ");
+			input.sendKeys(Keys.BACK_SPACE);
+			//
+			input.sendKeys(inputRow.get(1));
+			input.sendKeys(Keys.TAB);
+			LOG.info("The fields are being filled in");
+		});
+	}
 	
 	@Given("^I search for a set of domains located in a list$")
 	public void searchUsingList() throws Throwable {
 		webHelper.waitForThread();
 		WebElement input = webHelper.findSearchField();
-		webHelper.findSearchField().click();
 		input.clear();
+		input.sendKeys(readFile.getDomains());
+//		webHelper.findAvailableDomain();
+
 	}
 		
 

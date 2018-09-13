@@ -5,20 +5,24 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class ReadFile {
-public static void main(String[] args){
+public  String getDomains(){
 	BufferedReader reader;
+	String domains = null;
 	try{
-		reader = new BufferedReader(new FileReader("/Users/sashag/Work_stuff/Workspace/domainCheck/src/test/resources/domains.txt"));
+		reader = new BufferedReader(new FileReader("src/domains.txt"));
 		String line = reader.readLine();
+		domains = line;
 		while (line != null){
-			System.out.println(line);
+			
 			line = reader.readLine();
+			if (line != null)
+			domains = domains + line + " ";
 		}
 		reader.close();
 	}
 	catch(IOException e){
 		e.printStackTrace();
 	}
-	
+	return domains;
 } 
 }
