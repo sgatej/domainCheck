@@ -65,6 +65,11 @@ public class BrowserSteps {
 		});
 	}
 	
+	@Given("^I search all the domains from my list$")
+	public void i_search_all_the_domains_from_my_list(DataTable table) throws Throwable {
+
+	}
+	
 	@Given("^I search for a set of domains located in a list$")
 	public void searchUsingList() throws Throwable {
 		webHelper.waitForThread();

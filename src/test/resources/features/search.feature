@@ -1,7 +1,6 @@
-Feature: Test available domain
+Feature: Test available domain in Gazduire.ro
 
-  Background: Given I start a new browser session for "newurl"
-
+@ignore
   Scenario Outline: Test multiple users as available domains
     Given I fill in the field using <domainName>
       And I click on "Cauta"
