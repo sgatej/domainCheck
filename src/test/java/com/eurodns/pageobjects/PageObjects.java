@@ -1,4 +1,4 @@
-package pageobjects;
+package com.eurodns.pageobjects;
 
 public class PageObjects {
 	public final static String url = "https://www.gazduire.ro/inregistrare-domenii";

@@ -1,4 +1,4 @@
-package stepdefinition;
+package com.eurodns.stepdefinition;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -13,12 +13,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.Select;
 
+import com.eurodns.pageobjects.PageObjects;
+import com.eurodns.pageobjects.WebHelper;
+import com.eurodns.utils.ReadFile;
+
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import pageobjects.PageObjects;
-import pageobjects.WebHelper;
-import utils.ReadFile;
 
 public class BrowserSteps {
 

@@ -1,4 +1,4 @@
-package stepdefinition;
+package com.eurodns.stepdefinition;
 
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
@@ -6,7 +6,7 @@ import org.apache.commons.mail.SimpleEmail;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import pageobjects.PageObjects;
+import com.eurodns.pageobjects.PageObjects;
 
 public class EmailSteps {
 	private static final Logger LOG = LogManager.getLogger(EmailSteps.class);

@@ -1,4 +1,4 @@
-package runner;
+package com.eurodns.runner;
 
 import org.junit.runner.RunWith;
 
@@ -12,3 +12,4 @@ import cucumber.api.junit.Cucumber;
 public class CucumberRunnerTest {
 
 }
+

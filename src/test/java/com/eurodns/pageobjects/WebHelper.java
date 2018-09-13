@@ -1,4 +1,4 @@
-package pageobjects;
+package com.eurodns.pageobjects;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
