@@ -1,5 +1,8 @@
 package com.eurodns.stepdefinition;
 
+
+import java.util.List;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -66,9 +69,16 @@ public class BrowserSteps {
 	}
 	
 	@Given("^I search all the domains from my list$")
-	public void i_search_all_the_domains_from_my_list(DataTable table) throws Throwable {
+	public void i_search_all_the_domains_from_my_list(String fieldName) throws Throwable {
+			WebElement field = webHelper.findInputField(fieldName);
+List<String> domains = new ReadFile().readLines();
+for(String domain : domains) {
+	field.clear();
+	field.sendKeys(domain);
 
-	}
+}
+		}
+	
 	
 	@Given("^I search for a set of domains located in a list$")
 	public void searchUsingList() throws Throwable {

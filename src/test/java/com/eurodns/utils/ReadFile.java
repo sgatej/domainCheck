@@ -8,7 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ReadFile {
-public static String file = "src/domains.txt";
+public static String path = "src/domains.txt";
+public static File file = new File(path);
 
 	
 public  String getDomains(){
@@ -34,10 +35,11 @@ public  String getDomains(){
 	return domains;
 } 
 
-public static List<String> readLines (File file)throws Exception{
+public List<String> readLines ()throws Exception{
 	if(!file.exists()) {
 		return new LinkedList<String>();
 	}
+	@SuppressWarnings("resource")
 	BufferedReader reader = new BufferedReader(new FileReader(file));
 	List<String> results = new LinkedList<String>();
 	String line = reader.readLine();
