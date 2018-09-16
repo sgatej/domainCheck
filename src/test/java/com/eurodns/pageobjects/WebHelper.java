@@ -51,6 +51,8 @@ public class WebHelper {
 		return driver.findElement(xpath);
 	}
 	
+	
+	
 	public void findAvailableDomain() {
 		 driver.findElement(By.xpath(PageObjects.FREE_DOMAIN));		
 		
@@ -60,6 +62,10 @@ public class WebHelper {
 		LOG.info("DropDown found");
 		return driver.findElement(By.id(PageObjects.DROPDOWN_ID));
 	}
+	
+	public boolean domainMessage(){
+		return driver.findElement(By.id("textAlreadyRegistered")) == null;
+	}
 
 	public WebElement findModal() {
 		WebDriverWait wait = new WebDriverWait(driver, 3);
@@ -67,4 +73,14 @@ public class WebHelper {
 		LOG.info("The Response message available");
 		return driver.findElement(By.id(PageObjects.MODAL_MESSAGE));
 	}
+	
+	public boolean isDomainAvailable() {
+		WebDriverWait wait = new WebDriverWait(driver, 3);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.id(PageObjects.MODAL_MESSAGE)));
+		LOG.info("The Response message available");
+		
+		return driver.findElement(By.id(PageObjects.MODAL_MESSAGE)) == null;
+	}
+	
+	
 }

@@ -1,7 +1,8 @@
 package com.eurodns.stepdefinition;
 
-
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -28,6 +29,7 @@ public class BrowserSteps {
 
 	private static final Logger LOG = LogManager.getLogger(BrowserSteps.class);
 	private WebDriver driver;
+	static Set<String> availableDomainsFound = new HashSet<>();
 
 	WebHelper webHelper;
 	ReadFile readFile;
@@ -35,10 +37,10 @@ public class BrowserSteps {
 	public BrowserSteps() {
 
 		System.setProperty("webdriver.gecko.driver", "src/geckodriver");
-		System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");
+		System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "/dev/null");
 
 		FirefoxOptions firefoxOptions = new FirefoxOptions();
-		firefoxOptions.setCapability("marionette", true);
+		firefoxOptions.setCapability("marionette", false);
 		driver = new FirefoxDriver(firefoxOptions);
 		LOG.info("A new browser session is firing up");
 		driver.get(PageObjects.url);
@@ -67,29 +69,62 @@ public class BrowserSteps {
 			LOG.info("The fields are being filled in");
 		});
 	}
-	
-	@Given("^I search all the domains from my list$")
-	public void i_search_all_the_domains_from_my_list(String fieldName) throws Throwable {
-			WebElement field = webHelper.findInputField(fieldName);
-List<String> domains = new ReadFile().readLines();
-for(String domain : domains) {
-	field.clear();
-	field.sendKeys(domain);
 
-}
-		}
-	
-	
+	// @Given("^I search all the domains from my list$")
+	// public void i_search_all_the_domains_from_my_list(String fieldName)
+	// throws Throwable {
+	// WebElement field = webHelper.findInputField(fieldName);
+	// List<String> domains = new ReadFile().readLines();
+	// for (String domain : domains) {
+	// field.clear();
+	// field.sendKeys(domain);
+	//
+	// }
+	// }
+
 	@Given("^I search for a set of domains located in a list$")
 	public void searchUsingList() throws Throwable {
 		webHelper.waitForThread();
-		WebElement input = webHelper.findSearchField();
-		input.clear();
-		input.sendKeys(readFile.getDomains());
-//		webHelper.findAvailableDomain();
+		WebElement input = webHelper.findInputField("search");
+		List<String> domains = readFile.readLines();
+		WebElement newSearchButton;
+		for (String domain : domains) {
+			List<WebElement> inputs = driver.findElements(By.id("gzd7_r13_c18"));
+			if (inputs.isEmpty()) {
 
+				input = driver.findElement(By.id("registerName"));
+			}
+			input.clear();
+			LOG.info("Searching for " + domain);
+			input.sendKeys(domain);
+
+			List<WebElement> searchButton = driver.findElements(By.id("gzd7_r18_c39"));
+
+			if (searchButton.isEmpty()) {
+
+				newSearchButton = driver.findElement(By.id("buttonRegisterCheck"));
+				newSearchButton.click();
+
+			} else {
+				i_click_on("Cauta");
+			}
+
+			Thread.sleep(1000);
+			List<WebElement> messageAvailable = driver.findElements(By.id("textAlreadyRegistered"));
+			if (messageAvailable.isEmpty()) {
+				// WebElement newMessageAvailable =
+				// driver.findElement(By.className("domain-available"));
+				availableDomainsFound.add(domain + ".ro");
+			} else {
+				driver.findElement(By.id("textAlreadyRegistered"));
+			}
+			Thread.sleep(1000);
+			LOG.info("The response message is being shown");
+
+		}
+		EmailSteps.sendEmail();
+		driver.close();
 	}
-		
 
 	@Given("^I click on \"([^\"]*)\"$")
 	public void i_click_on(String buttonName) throws Throwable {
