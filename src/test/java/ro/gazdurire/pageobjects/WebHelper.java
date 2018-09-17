@@ -18,12 +18,15 @@ import ro.gazduire.stepdefinition.BrowserSteps;
 public class WebHelper {
 	private WebDriver driver;
 	private static final Logger LOG = LogManager.getLogger(WebHelper.class);
-
+	
 	@FindBy(id = "gzd7_r18_c39")
 	WebElement submitButton;
 
 	@FindBy(id = "buttonRegisterCheck")
 	WebElement searchButton;
+	
+	@FindBy(id = "gzd7_r13_c18")
+	WebElement newInputField;
 
 	@FindAll({ @FindBy(id = "gzd7_r18_c39")})
 	public List<WebElement> inField;
@@ -48,25 +51,25 @@ public class WebHelper {
 
 	public WebElement findInputField(String label) {
 		LOG.info("Found input field");
-		return driver.findElement(By.id(PageObjects.INPUT_FIELD));
+		return newInputField;
 	}
 
 
-	public WebElement newMessage() {
+	public List<WebElement> newMessage() {
 		WebDriverWait wait = new WebDriverWait(driver, 2);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id(PageObjects.NEW_MESSAGE)));
-		return driver.findElement(By.id(PageObjects.NEW_MESSAGE));
+		return messageDisplayed;
 	}
 
 	public WebElement newSearchButton() {
 		WebDriverWait wait = new WebDriverWait(driver, 2);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id(PageObjects.NEW_BUTTON)));
-		return driver.findElement(By.id(PageObjects.NEW_BUTTON));
+		return searchButton;
 	}
 
 	public void clickButton() throws Throwable {
 		submitButton.click();
-		LOG.info("Found field to be clicked. Proceed on clicking it");
+		LOG.info("Found button to be clicked. Proceed on clicking it");
 	}
 
 	public void messageIsShown(String domain) {
