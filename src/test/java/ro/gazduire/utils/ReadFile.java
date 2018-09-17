@@ -1,4 +1,4 @@
-package com.eurodns.utils;
+package ro.gazduire.utils;
 
 import java.io.BufferedReader;
 import java.io.File;

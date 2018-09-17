@@ -1,4 +1,4 @@
-package com.eurodns.stepdefinition;
+package ro.gazduire.stepdefinition;
 
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
@@ -6,7 +6,7 @@ import org.apache.commons.mail.SimpleEmail;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import com.eurodns.pageobjects.PageObjects;
+import ro.gazdurire.pageobjects.PageObjects;
 
 public class EmailSteps {
 	private static final Logger LOG = LogManager.getLogger(EmailSteps.class);
@@ -23,7 +23,7 @@ public class EmailSteps {
 			email.setSSLOnConnect(true);
 			email.setFrom(PageObjects.MY_EMAIL);
 			email.setSubject("Available Domains");
-			email.setMsg("These are the domains which are available for registration: " + com.eurodns.stepdefinition.BrowserSteps.availableDomainsFound );
+			email.setMsg("These are the domains which are available for registration: " + ro.gazduire.stepdefinition.BrowserSteps.availableDomainsFound );
 			email.addTo(PageObjects.FRIEND_EMAIL);
 			email.send();
 			LOG.info("The email has been successfully sent!");
