@@ -10,9 +10,11 @@ import com.eurodns.pageobjects.PageObjects;
 
 public class EmailSteps {
 	private static final Logger LOG = LogManager.getLogger(EmailSteps.class);
-
+	
 	public static void sendEmail() {
+		
 		try {
+		
 			Email email = new SimpleEmail();
 
 			email.setHostName("smtp.googlemail.com");
@@ -20,8 +22,8 @@ public class EmailSteps {
 			email.setAuthenticator(new DefaultAuthenticator(PageObjects.MY_EMAIL, PageObjects.MY_PASSWORD));
 			email.setSSLOnConnect(true);
 			email.setFrom(PageObjects.MY_EMAIL);
-			email.setSubject("Domain available");
-			email.setMsg("The domain you are searching for is now available");
+			email.setSubject("Available Domains");
+			email.setMsg("These are the domains which are available for registration: " + com.eurodns.stepdefinition.BrowserSteps.availableDomainsFound );
 			email.addTo(PageObjects.FRIEND_EMAIL);
 			email.send();
 			LOG.info("The email has been successfully sent!");

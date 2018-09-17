@@ -10,7 +10,6 @@ import java.util.List;
 public class ReadFile {
 public static String path = "src/domains.txt";
 public static File file = new File(path);
-
 	
 public  String getDomains(){
 	BufferedReader reader;
@@ -46,6 +45,7 @@ public List<String> readLines ()throws Exception{
 	while(line !=null) {
 		results.add(line);
 		line = reader.readLine();
+	
 	}return results;
 }
 
